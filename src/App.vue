@@ -38,10 +38,13 @@
 
 <script>
 
+import data from './data/data.js';
+
 export default {
   name: 'App',
   data(){
     return{
+      rooms : data,
       modalOpen : false,
       navs : ['Home', 'Products', 'About'],
       products : ['마포구 원룸', '용산구 원룸', '관악구 원룸'],
