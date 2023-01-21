@@ -2,21 +2,24 @@
   <div class="black-bg" v-if="modalOpen === true">
     <div class="white-bg">
       <button @click="modalOpen = false">X</button>
-      <h4>제품 상세 페이지</h4>
-      <p>제품 상세 내용</p>
+      <div>
+        <h4>{{ rooms[clickedId].title }}</h4>
+        <p>{{ rooms[clickedId].content }}</p>
+      </div>      
     </div>
   </div>
   <div class="nav">
     <a v-for="(a, i) in navs" :key="i">{{a}}</a>
   </div>
-  <!-- <div v-for="(a, i) in products" :key="i">
-    <h4>{{ a }}</h4>
-    <p>{{prices[i]}} 만원</p>
-    <button @click="reports[i]++">허위매물신고</button><span>신고 : {{ reports[i] }}</span>
-  </div> -->
-  <div>
+  <div v-for="(a, i) in rooms" :key="i">
+    <img :src="rooms[i].image">
+    <h4 @click="modalOpen = true; clickedId = rooms[i].id">{{ rooms[i].title }}</h4>
+    <p>{{rooms[i].price}}원</p>
+    <!-- <button @click="reports[i]++">허위매물신고</button><span>신고 : {{ reports[i] }}</span> -->
+  </div>
+  <!-- <div>
     <img class="room-img" src="./assets/room0.jpg" alt="room0">
-    <h4 @click="modalOpen = true">{{ products[0] }}</h4>
+    <h4 @click="modalOpen = true">{{ rooms[0].title }}</h4>
     <p>50 만원</p>
     <button @click="reports[0]++">허위매물신고</button><span>신고 : {{ reports[0] }}</span>
   </div>
@@ -31,7 +34,7 @@
     <h4>{{ products[2] }}</h4>
     <p>80 만원</p>
     <button @click="reports[2]++">허위매물신고</button><span>신고 : {{ reports[2] }}</span>
-  </div>
+  </div> -->
 
   
 </template>
@@ -44,7 +47,8 @@ export default {
   name: 'App',
   data(){
     return{
-      rooms : data,
+      clickedId : 0,
+      rooms : data, 
       modalOpen : false,
       navs : ['Home', 'Products', 'About'],
       products : ['마포구 원룸', '용산구 원룸', '관악구 원룸'],
@@ -53,9 +57,9 @@ export default {
     }
   },
   methods : {
-    increase(i){
-      this.reports[i] += 1;
-    },  
+    increase(){
+      this.reports += 1;
+    }
   },
   components: {
   
@@ -78,6 +82,7 @@ body {
   background: royalblue;
   padding: 15px;
   border-radius: 5px;
+  margin-bottom: 80px;
 }
 .nav a{
   color: whitesmoke;
