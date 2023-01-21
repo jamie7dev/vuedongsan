@@ -1,10 +1,12 @@
 <template>
   <div class="black-bg" v-if="modalOpen === true">
     <div class="white-bg">
-      <button @click="modalOpen = false">X</button>
+      <button class="modal-close-btn" @click="modalOpen = false">닫기</button>
       <div>
+        <img :src="rooms[clickedId].image">
         <h4>{{ rooms[clickedId].title }}</h4>
         <p>{{ rooms[clickedId].content }}</p>
+        <p>{{ rooms[clickedId].price }}원</p>
       </div>      
     </div>
   </div>
@@ -106,5 +108,12 @@ body {
   background: whitesmoke;
   border-radius: 8px;
   padding: 20px;
+  
+}
+.modal-close-btn {
+  width: 50px;
+  margin: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 </style>
