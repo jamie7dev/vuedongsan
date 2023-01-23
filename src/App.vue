@@ -1,49 +1,29 @@
 <template>
-  <div class="black-bg" v-if="modalOpen === true">
-    <div class="white-bg">
-      <button class="modal-close-btn" @click="modalOpen = false">닫기</button>
-      <div>
-        <img :src="rooms[clickedId].image">
-        <h4>{{ rooms[clickedId].title }}</h4>
-        <p>{{ rooms[clickedId].content }}</p>
-        <p>{{ rooms[clickedId].price }}원</p>
-      </div>      
-    </div>
-  </div>
+  <Modal :rooms="rooms" :clickedId="clickedId" :modalOpen="modalOpen"/>
   <div class="nav">
     <a v-for="(a, i) in navs" :key="i">{{a}}</a>
   </div>
-  <div v-for="(a, i) in rooms" :key="i">
-    <img :src="rooms[i].image">
-    <h4 @click="modalOpen = true; clickedId = rooms[i].id">{{ rooms[i].title }}</h4>
-    <p>{{rooms[i].price}}원</p>
-    <!-- <button @click="reports[i]++">허위매물신고</button><span>신고 : {{ reports[i] }}</span> -->
-  </div>
-  <!-- <div>
-    <img class="room-img" src="./assets/room0.jpg" alt="room0">
-    <h4 @click="modalOpen = true">{{ rooms[0].title }}</h4>
-    <p>50 만원</p>
-    <button @click="reports[0]++">허위매물신고</button><span>신고 : {{ reports[0] }}</span>
-  </div>
-  <div>
-    <img class="room-img" src="./assets/room1.jpg" alt="room1">
-    <h4>{{ products[1] }}</h4>
-    <p>70 만원</p>
-    <button @click="reports[1]++">허위매물신고</button><span>신고 : {{ reports[1] }}</span>
-  </div>
-  <div>
-    <img class="room-img" src="./assets/room2.jpg" alt="room2">
-    <h4>{{ products[2] }}</h4>
-    <p>80 만원</p>
-    <button @click="reports[2]++">허위매물신고</button><span>신고 : {{ reports[2] }}</span>
-  </div> -->
 
+  <Discount />
+
+  <Card @openModal="modalOpen = true" :room="rooms[i]" v-for="(a, i) in rooms" :key="i"/>
+  
+  
+  <!-- <Card :room="rooms[1]"/>
+  <Card :room="rooms[2]"/>
+  <Card :room="rooms[3]"/>
+  <Card :room="rooms[4]"/>
+  <Card :room="rooms[5]"/> -->
+  
   
 </template>
 
 <script>
 
 import data from './data/data.js';
+import Discount from './Discount.vue';
+import Modal from './Modal.vue';
+import Card from './Card.vue';
 
 export default {
   name: 'App',
@@ -53,18 +33,18 @@ export default {
       rooms : data, 
       modalOpen : false,
       navs : ['Home', 'Products', 'About'],
-      products : ['마포구 원룸', '용산구 원룸', '관악구 원룸'],
-      prices : [50, 70, 60],
-      reports: [0, 0, 0],
+      reports: 0,
     }
   },
   methods : {
-    increase(){
-      this.reports += 1;
-    }
+    // increase(){
+    //   this.reports += 1;
+    // }
   },
   components: {
-  
+    Discount: Discount,
+    Modal: Modal,
+    Card: Card,
   }
 }
 </script>
@@ -84,7 +64,6 @@ body {
   background: royalblue;
   padding: 15px;
   border-radius: 5px;
-  margin-bottom: 80px;
 }
 .nav a{
   color: whitesmoke;
@@ -116,4 +95,6 @@ body {
   padding: 5px 10px;
   cursor: pointer;
 }
+
+
 </style>
