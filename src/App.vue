@@ -51,7 +51,6 @@ export default {
       rooms_original : [...data],
       modalOpen : false,
       navs : ['Home', 'Products', 'About'],
-      reports: 0,
 
       showDiscount : true,
     }
