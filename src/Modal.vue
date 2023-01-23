@@ -1,8 +1,8 @@
 <template>
   <div class="black-bg" v-if="modalOpen === true">
     <div class="white-bg">
-      <!-- <button class="modal-close-btn" @click="modalOpen = false">닫기</button> -->
       <div>
+        <button class="modal-close-btn" @click="closeModal">닫기</button>
         <img :src="rooms[clickedId].image">
         <h4>{{ rooms[clickedId].title }}</h4>
         <p>{{ rooms[clickedId].content }}</p>
@@ -22,6 +22,11 @@ export default {
     rooms : Array,
     clickedId : Number,
     modalOpen : Boolean,
+  },
+  methods: {
+    closeModal() {
+      this.$emit('closeModal')
+    }
   },
 }
 </script>

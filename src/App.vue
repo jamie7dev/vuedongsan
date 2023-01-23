@@ -1,12 +1,12 @@
 <template>
-  <Modal :rooms="rooms" :clickedId="clickedId" :modalOpen="modalOpen"/>
+  <Modal @closeModal="modalOpen = false" :rooms="rooms" :clickedId="clickedId" :modalOpen="modalOpen"/>
   <div class="nav">
     <a v-for="(a, i) in navs" :key="i">{{a}}</a>
   </div>
 
   <Discount />
 
-  <Card @openModal="modalOpen = true" :room="rooms[i]" v-for="(a, i) in rooms" :key="i"/>
+  <Card @openModal="modalOpen = true; clickedId=$event" :room="rooms[i]" v-for="(a, i) in rooms" :key="i"/>
   
   
   <!-- <Card :room="rooms[1]"/>
@@ -94,6 +94,7 @@ body {
   margin: 20px;
   padding: 5px 10px;
   cursor: pointer;
+  display: block;
 }
 
 
