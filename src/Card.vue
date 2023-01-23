@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img :src="room.image">
+    <img class="room-img" :src="room.image">
     <h4 @click="openModal">{{ room.title }}</h4>
     <p>{{room.price}}원</p>
   </div>
@@ -25,5 +25,8 @@ export default {
 </script>
 
 <style>
-
+.room-img {
+  width: 100%;
+  margin-top: 40px;
+}
 </style>
