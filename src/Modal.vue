@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       month: 1,
+      reports: 0,
     }
   },
   watch : {
